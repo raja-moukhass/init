@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "entrer votre login"
+read user
+sudo passwd -l $user
+sudo killall -KILL -u $user
+sudo crontab -r -u $user
+sudo userdel -rf $user

@@ -1,0 +1,1 @@
+eval ifconfig | grep 'en1' -A1 | sed 1d | cut -d ' ' -f2

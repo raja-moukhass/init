@@ -1,0 +1,23 @@
+#!/bin/bash
+clear
+echo "Enter a username :"
+read username
+user=`ls /home | grep $username`
+sudo adduser $username
+if [ "$username" != "$user" ]
+then
+echo "Do you want to add your user to the SUDOERS group? (Y/N)"
+read answer
+case $answer in
+"Yes" | "yes" | 'Y' | 'y' | "YES")
+eval sudo usermod -aG sudo $username && echo "Your user was successfully added to the SUDOERS Group!!"
+;;
+"NO" | "no" | "No" | 'n' | 'N')
+echo "Your user wasn't added to the SUDOERS Group!!"
+;;
+*)
+echo "This is not a valid answer"
+echo "Your user wasn't added to the SUDOERS Group!!"    ;;
+esac
+echo "User Created Successfully"
+fi
